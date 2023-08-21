@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of parlementr is to …
+The goal of parlementr is to facilitate access from R to french parliamentary data. Most of the functions make calls to the nosdeputes.fr API. 
 
 ## Installation
 

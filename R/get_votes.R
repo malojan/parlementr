@@ -1,10 +1,15 @@
 
-#' Get roll call votes
-#' @param term A character vector indicating the term
-#' @param add_meta A boolean indicating if meta data should be added
-#' @return A tibble
+#' Get roll call votes for specified terms.
+#'
+#' This function retrieves roll call votes for the provided legislatures.
+#' It provides an option to add metadata to the returned dataset.
+#'
+#' @param term A character vector indicating the term. Default is "16".
+#' @param add_meta A logical indicating if additional metadata should be added. Default is TRUE.
+#' @return A tibble containing the roll call votes.
 #' @export
-#' @examples get_votes("16", add_meta = TRUE)
+#' @examples
+#' get_votes("16", add_meta = TRUE)
 
 get_votes <- function(term = "16", add_meta = TRUE) {
   # Define base URLs for different legislatures
@@ -34,16 +39,16 @@ get_votes <- function(term = "16", add_meta = TRUE) {
 
   if (add_meta == TRUE) {
     votes <- votes |>
-      mutate(
-        titre = str_squish(titre),
-        scrutin_loi = str_extract(titre, regex("(?<=du )projet de loi.+|(?<=au )projet de loi.+|(?<=sur le )projet de loi.+|(?<=la )proposition de loi.+|proposition de résolution.+|(?<=la )motion de censure(?= déposée en application)|déclaration du Gouvernement.+|d[ée]claration de politique g[ée]n[ée]rale.+")),
-        scrutin_loi_type = case_when(
-          str_detect(scrutin_loi, "proposition de loi") ~ "Proposition de loi",
-          str_detect(scrutin_loi, "projet de loi") ~ "Projet de loi",
-          str_detect(scrutin_loi, "motion de censure") ~ "Motion de censure",
-          str_detect(scrutin_loi, "proposition de résolution") ~ "Proposition de résolution",
-          str_detect(scrutin_loi, "déclaration du Gouvernement") ~ "Déclaration du Gouvernement",
-          str_detect(scrutin_loi, "d[ée]claration de politique g[ée]n[ée]rale") ~ "Déclaration de politique générale",
+      dplyr::mutate(
+        titre = stringr::str_squish(titre),
+        scrutin_loi = stringr::str_extract(titre, "(?<=du )projet de loi.+|(?<=au )projet de loi.+|(?<=sur le )projet de loi.+|(?<=la )proposition de loi.+|proposition de résolution.+|(?<=la )motion de censure(?= déposée en application)|déclaration du Gouvernement.+|d[ée]claration de politique g[ée]n[ée]rale.+"),
+        scrutin_loi_type = dplyr::case_when(
+          stringr::str_detect(scrutin_loi, "proposition de loi") ~ "Proposition de loi",
+          stringr::str_detect(scrutin_loi, "projet de loi") ~ "Projet de loi",
+          stringr::str_detect(scrutin_loi, "motion de censure") ~ "Motion de censure",
+          stringr::str_detect(scrutin_loi, "proposition de résolution") ~ "Proposition de résolution",
+          stringr::str_detect(scrutin_loi, "déclaration du Gouvernement") ~ "Déclaration du Gouvernement",
+          stringr::str_detect(scrutin_loi, "d[ée]claration de politique g[ée]n[ée]rale") ~ "Déclaration de politique générale",
         )
       )
   }
@@ -61,7 +66,7 @@ get_votes <- function(term = "16", add_meta = TRUE) {
 #' @return A tibble
 #' @export
 #'
-#' @examples get_vote_mps("16", "1")
+#' @examples get_vote_mps(legislature = "16", vote_number = "1")
 
 get_vote_mps <- function(api_url = NULL, legislature = NULL, vote_number = NULL) {
   # Base URLs for legislatures (assuming similar structure as before)

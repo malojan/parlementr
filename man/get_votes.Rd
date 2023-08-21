@@ -2,20 +2,21 @@
 % Please edit documentation in R/get_votes.R
 \name{get_votes}
 \alias{get_votes}
-\title{Get roll call votes}
+\title{Get roll call votes for specified terms.}
 \usage{
 get_votes(term = "16", add_meta = TRUE)
 }
 \arguments{
-\item{term}{A character vector indicating the term}
+\item{term}{A character vector indicating the term. Default is "16".}
 
-\item{add_meta}{A boolean indicating if meta data should be added}
+\item{add_meta}{A logical indicating if additional metadata should be added. Default is TRUE.}
 }
 \value{
-A tibble
+A tibble containing the roll call votes.
 }
 \description{
-Get roll call votes
+This function retrieves roll call votes for the provided legislatures.
+It provides an option to add metadata to the returned dataset.
 }
 \examples{
 get_votes("16", add_meta = TRUE)

@@ -9,7 +9,9 @@ get_mps(term = c("current"), type = c("serving"), detail = FALSE)
 \arguments{
 \item{term}{A character vector with either "13", "14, "15" or "current"}
 
-\item{type}{A boolean operator indicating whether to add additional data. Can take a few minutes in that case.}
+\item{type}{A character vector with either "all" or "current". Indicates whether we want only the current Mps of a legislature or all of them.}
+
+\item{detail}{A boolean operator indicating whether to add additional data. Can take a few minutes in that case.}
 }
 \value{
 A tibble.

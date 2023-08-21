@@ -20,5 +20,5 @@ A tibble
 Get detail of each mp for roll call
 }
 \examples{
-get_vote_mps("16", "1")
+get_vote_mps(legislature = "16", vote_number = "1")
 }

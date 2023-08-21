@@ -2,7 +2,7 @@
 #'
 #' @param term A character vector with either "13", "14, "15" or "current"
 #' @param type A character vector with either "all" or "current". Indicates whether we want only the current Mps of a legislature or all of them.
-#' @param type A boolean operator indicating whether to add additional data. Can take a few minutes in that case.
+#' @param detail A boolean operator indicating whether to add additional data. Can take a few minutes in that case.
 #' @return A tibble.
 #' @export
 #'
@@ -44,8 +44,8 @@ get_mps <-
           name_repair = "unique_quiet"
         ) |>
           dplyr::mutate(term = leg,
-                        num_circo = case_when(
-                        str_length(num_circo) == 1 ~ paste0("0", num_circo),
+                        num_circo = dplyr::case_when(
+                        stringr::str_length(num_circo) == 1 ~ paste0("0", num_circo),
                         TRUE ~ as.character(num_circo)))
       )
     }
