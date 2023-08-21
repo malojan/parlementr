@@ -1,12 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# parlementr
+# parlementr <img src="man/figures/parlementr_logo.png" width="160px" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of parlementr is to facilitate access from R to french parliamentary data. Most of the functions make calls to the nosdeputes.fr API. 
+The goal of parlementr is to facilitate access from R to french
+parliamentary data. Most of the functions make calls to the
+nosdeputes.fr API.
 
 ## Installation
 
@@ -41,7 +43,7 @@ get_mps(term = "15", type = "all")
 #>  9     9 Pierre-Alain… Raphan         Pierr… H     1983-04-06     Choisy-le-Roi…
 #> 10    10 Isabelle Mul… Muller-Quoy    Isabe… F     1967-11-08     Agen (Lot-et-…
 #> # ℹ 649 more rows
-#> # ℹ 25 more variables: num_deptmt <chr>, nom_circo <chr>, num_circo <dbl>,
+#> # ℹ 25 more variables: num_deptmt <chr>, nom_circo <chr>, num_circo <chr>,
 #> #   mandat_debut <date>, mandat_fin <date>, ancien_depute <dbl>,
 #> #   groupe_sigle <chr>, parti_ratt_financier <chr>, sites_web <chr>,
 #> #   emails <chr>, adresses <chr>, collaborateurs <chr>, autres_mandats <chr>,
