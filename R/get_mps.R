@@ -1,5 +1,15 @@
 
-get_mps <- function(legislature = c("current"), type) {
+#' Get members of parliament
+#'
+#' @param term A character vector with either "13", "14, "15" or "current"
+#' @param type A character vector with either "all" or "current". Indicates whether we want only the current Mps of a legislature or all of them.
+#'
+#' @return A tibble.
+#' @export
+#'
+#' @examples get_mps(c("13", "14"), "all")
+
+get_mps <- function(term = c("current"), type = c("serving")) {
   # Define base URLs for different legislatures
   base_urls <- list(
     "13" = "2007-2012.nosdeputes.fr",
@@ -9,7 +19,7 @@ get_mps <- function(legislature = c("current"), type) {
   )
 
   # Ensure that the provided legislatures are valid
-  if (any(!legislature %in% names(base_urls))) {
+  if (any(!term %in% names(base_urls))) {
     stop("Invalid legislature provided. Choose from '13', '14', '15', or 'current'.")
   }
 
@@ -26,13 +36,14 @@ get_mps <- function(legislature = c("current"), type) {
     }
 
     return(
-      readr::read_delim(url, col_select = - starts_with("..."), col_types = readr::cols()) |>
-        dplyr::mutate(legislature = leg)
+      readr::read_delim(url, col_select = - tidyselect::starts_with("..."), col_types = readr::cols()) |>
+        dplyr::mutate(term = leg)
     )
   }
 
   # Use map_dfr to fetch data for each legislature and bind into a single tibble
-  mps <- purrr::map_dfr(legislature, fetch_data)
+  mps <- purrr::map_dfr(term, fetch_data)
 
   return(mps)
 }
+
