@@ -1,5 +1,14 @@
 
 
+#' Retrieve Mp activity
+#'
+#' @param term Term number
+#'
+#' @return A tibble
+#' @export
+#'
+#' @examples get_activity(term = "16")
+#'
 get_activity <- function(term = "16") {
   # Define base URLs for different legislatures
   # Only legislature 15 and 16 are available for roll_call
@@ -27,4 +36,6 @@ get_activity <- function(term = "16") {
   }
 
   activity <- purrr::map_dfr(term, fetch_data)
+
+  return(activity)
 }

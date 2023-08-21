@@ -4,7 +4,7 @@
 \alias{get_votes}
 \title{Get roll call votes for specified terms.}
 \usage{
-get_votes(term = "16", add_meta = TRUE)
+get_votes(term = "16", add_meta = FALSE)
 }
 \arguments{
 \item{term}{A character vector indicating the term. Default is "16".}

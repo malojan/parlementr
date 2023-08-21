@@ -42,5 +42,17 @@ library(parlementr)
 get_mps(term = "15", type = "all")
 ```
 
+## Retrieve Mps activity
+
+```{r}
+get_activity(term = "16")
+```
+
+## Retrieve roll call votes
+
+```{r}
+get_votes(term = "16")
+```
+
 
 

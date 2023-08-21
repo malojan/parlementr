@@ -11,7 +11,7 @@
 #' @examples
 #' get_votes("16", add_meta = TRUE)
 
-get_votes <- function(term = "16", add_meta = TRUE) {
+get_votes <- function(term = "16", add_meta = FALSE) {
   # Define base URLs for different legislatures
   # Only legislature 15 and 16 are available for roll_call
   base_urls <- list(
@@ -51,6 +51,7 @@ get_votes <- function(term = "16", add_meta = TRUE) {
           stringr::str_detect(scrutin_loi, "d[ée]claration de politique g[ée]n[ée]rale") ~ "Déclaration de politique générale",
         )
       )
+    return(votes)
   }
   else {
     return(votes)
