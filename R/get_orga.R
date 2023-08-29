@@ -78,9 +78,9 @@ get_orga <- function(term, type = c("groupe")) {
 #'
 #' @examples
 
-#' all_members <- get_orga_members(term =c("15"), slug = c("democrate"), include_past = TRUE)
+#' all_members <- get_orga_members(term =c("16"), orga_slug = c("democrate"), include_past = TRUE)
 
-get_orga_members <- function(term, slug, include_past = FALSE) {
+get_orga_members <- function(term, orga_slug, include_past = FALSE) {
   # Define base URLs for different legislatures
   base_urls <- list(
     "13" = "2007-2012.nosdeputes.fr",
@@ -108,14 +108,16 @@ get_orga_members <- function(term, slug, include_past = FALSE) {
 
     # Fetch members' data from the constructed URL
     members_data <- readr::read_csv2(url, show_col_types = FALSE) |>
-      select(term, orga_slug, slug, fonction)
+      dplyr::select(slug, fonction) |>
+      dplyr::mutate(orga_slug = orga_slug,
+                    term = term)
 
     return(members_data)
   }
 
   # Loop over each combination of term and slug to fetch data and combine into a single tibble
   all_data <- purrr::map_dfr(term, function(t) {
-    purrr::map_dfr(slug, function(s) {
+    purrr::map_dfr(orga_slug, function(s) {
       fetch_data(t, s)
     })
   })

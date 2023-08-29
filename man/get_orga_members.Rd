@@ -4,14 +4,14 @@
 \alias{get_orga_members}
 \title{Fetch Members of Organisms from the French Parliament API}
 \usage{
-get_orga_members(term, slug, include_past = FALSE)
+get_orga_members(term, orga_slug, include_past = FALSE)
 }
 \arguments{
 \item{term}{A character vector specifying the legislature terms. Valid terms are '13', '14', '15', and '16'.}
 
-\item{slug}{A character vector specifying the slugs of the organisms.}
-
 \item{include_past}{A logical value. If TRUE and term is '15' or '16', the function will also fetch past members of the organisms.}
+
+\item{slug}{A character vector specifying the slugs of the organisms.}
 }
 \value{
 A tibble containing members for the provided terms and slugs.
@@ -21,5 +21,5 @@ This function retrieves members of specified organisms (or "orgas") from the Fre
 for given legislatures and slugs.
 }
 \examples{
-all_members <- get_orga_members(term =c("15"), slug = c("democrate"), include_past = TRUE)
+all_members <- get_orga_members(term =c("16"), orga_slug = c("democrate"), include_past = TRUE)
 }
