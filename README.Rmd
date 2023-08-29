@@ -26,8 +26,7 @@ The goal of parlementr is to facilitate access from R to french parliamentary da
 
 You can install the development version of parlementr from [GitHub](https://github.com/) with:
 
-``` r
-# install.packages("devtools")
+```{r }
 devtools::install_github("malojan/parlementr")
 ```
 
@@ -45,18 +44,18 @@ get_mps(term = "15", type = "all")
 ## Retrieve Mps activity
 
 ```{r}
-get_activity(term = "16")
+parlementr::get_activity(term = "16")
 ```
 
 ## Retrieve roll call votes
 
 ```{r}
-get_votes(term = "16")
+parlementr::get_votes(term = "16")
 ```
 # Retrieve different organisms of the french parliament
 
 ```{r}
-get_organisms(term = "16", type =c("groupe"))
+parlementr::get_orga(term = "16", type =c("groupe"))
 ```
 
 
