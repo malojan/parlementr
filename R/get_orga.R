@@ -107,7 +107,8 @@ get_orga_members <- function(term, slug, include_past = FALSE) {
     }
 
     # Fetch members' data from the constructed URL
-    members_data <- readr::read_csv2(url, show_col_types = FALSE)
+    members_data <- readr::read_csv2(url, show_col_types = FALSE) |>
+      select(term, orga_slug, slug, fonction)
 
     return(members_data)
   }
