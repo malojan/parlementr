@@ -53,6 +53,11 @@ get_activity(term = "16")
 ```{r}
 get_votes(term = "16")
 ```
+# Retrieve different organisms of the french parliament
+
+```{r}
+get_organisms(term = "16", type =c("groupe"))
+```
 
 
 

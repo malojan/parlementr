@@ -2,5 +2,7 @@
 
 export(get_activity)
 export(get_mps)
+export(get_orga)
+export(get_orga_members)
 export(get_vote_mps)
 export(get_votes)
